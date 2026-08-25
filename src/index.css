@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sage-50: #faf7f2;
+  --color-sage-100: #f4ede2;
+  --color-sage-200: #e8ded0;
+  --color-sage-300: #d4c5b0;
+  --color-sage-400: #aa957c;
+  --color-sage-500: #8c7355;
+  --color-sage-600: #786146;
+  --color-sage-700: #5e4b35;
+  --color-sage-800: #483928;
+  --color-sage-900: #33281c;
+
+  --color-linen-50: #fdfbf7;
+  --color-linen-100: #f9f6f0;
+  --color-linen-200: #f4ede2;
+  --color-linen-300: #e8dfd1;
+  --color-linen-400: #ded3c1;
+  --color-linen-500: #cfbfab;
+
+  --color-forest-800: #4a3d2f;
+  --color-forest-900: #362c21;
+  --color-forest-950: #231c15;
+
+  --color-earth-dark-bg: #1c1917;
+  --color-earth-dark-card: #26221f;
+  --color-earth-dark-border: #3b352f;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: floatSlow 10s ease-in-out infinite;
+  --animate-drift: drift 12s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1.5deg);
+  }
+}
+
+@keyframes drift {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(8px) translateY(-8px);
+  }
+}
+
+@layer base {
+  body {
+    background-color: #f7f4ed;
+    color: #3b352f;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  html.dark body,
+  body.dark,
+  .dark body {
+    background-color: #1c1917;
+    color: #f0ebe1;
+  }
+}
+
+/* Custom scrollbar in warm beige & neutral gray tones */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4ede2;
+}
+.dark ::-webkit-scrollbar-track,
+html.dark ::-webkit-scrollbar-track {
+  background: #1c1917;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4c5b0;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb,
+html.dark ::-webkit-scrollbar-thumb {
+  background: #3b352f;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8c7355;
+}
+.dark ::-webkit-scrollbar-thumb:hover,
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #aa957c;
+}
+
+/* Print styles for clean offline paper notes */
+@media print {
+  body, html {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 11pt !important;
+  }
+
+  /* Hide interactive controls, sidebars, navigation, audio players, modals */
+  nav,
+  aside,
+  header,
+  #notes-audio-player-card,
+  #pdf-export-modal,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Expand notes container full width */
+  main, #root, #notes-view-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* Page break rules */
+  h1, h2, h3, .print-break-inside-avoid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  h1 {
+    font-size: 18pt !important;
+    color: #1e293b !important;
+    margin-bottom: 8pt !important;
+  }
+
+  h2, h3 {
+    font-size: 13pt !important;
+    color: #334155 !important;
+    margin-top: 14pt !important;
+  }
+
+  p, li {
+    color: #1e293b !important;
+    line-height: 1.5 !important;
+  }
+}
